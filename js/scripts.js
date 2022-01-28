@@ -137,10 +137,6 @@
 // });
 
 
-// item.addEventListener('click', function (event) {
-//    console.log(event);
-// });
-
 
 let addMessage = document.querySelector('.message'),
    addButton = document.querySelector('.add'),
@@ -203,7 +199,7 @@ addButton.addEventListener('click', function (event) {
       checked: false,
       id: 'item_' + newId
    }
-   if (addMessage.value === '') {
+   if (addMessage.value == '') {
       return;
    } else {
       newId++;
@@ -252,9 +248,14 @@ clearButton.addEventListener('click', function () {
 function edit() {
    todoList.forEach(function (item) {
       if (item.id === itemId) {
-         item.todo = prompt('Edit Task', item.todo);
-         localStorage.setItem('todo', JSON.stringify(todoList));
-         displayMessages();
+         let editedTusk = prompt('Edit Task', item.todo);
+         if (editedTusk === null) {
+            return;
+         } else {
+            item.todo = editedTusk;
+            localStorage.setItem('todo', JSON.stringify(todoList));
+            displayMessages();
+         }
       }
    })
 }
